@@ -46,7 +46,6 @@ export default function Research() {
         [e.target.id]: e.target.checked
       });
     }
-
     // Handle text input changes
     if (e.target.type === 'text' || e.target.type === 'textarea' ) {
       setFormData({
@@ -122,6 +121,19 @@ export default function Research() {
       setMinPhotosError(false);
     }
 
+    // Check if at least one checkbox is checked
+    if (
+      !formData.composting &&
+      !formData.reducing &&
+      !formData.donating &&
+      !formData.energy &&
+      !formData.reuse &&
+      !formData.other
+    ) {
+      setError('Please select at least one checkbox.');
+      return;
+    }
+
     try {
       setLoading(true);
       setError(false);
@@ -133,19 +145,15 @@ export default function Research() {
         body: JSON.stringify(formData),
       });
 
-      const data = await res.json();
+      if (!res.ok) {
+        throw new Error('Failed to create research');
+      }
+
       setLoading(false);
-      if (data.success === false) {
-        setError(data.message);
-      }
-      else {
-        
-        setFormSubmitted(true);
-        setTimeout(() => {
-          window.location.reload();
-        }, 8000); 
-      }
-      
+      setFormSubmitted(true);
+      setTimeout(() => {
+        window.location.reload();
+      }, 8000); 
     } catch (error) {
       setError(error.message);
       setLoading(false);
@@ -162,30 +170,21 @@ export default function Research() {
       <br /><br />
       {/* Form for data input */}
       <form className='flex flex-col' onSubmit={handleSubmit}>
-
-     
-
-         
          {/* Input field for researchId */}
          <div className=''>
-         <span className="font-semibold">Research User Id : </span>
-         <input
-
-            placeholder='Research Id'
-            className=' text-slate-400 font-semibold text-center border p-3 rounded-lg w-56 '
-            id='researchId'
-            required
-            readOnly
-            defaultValue={formData.researchId}
-          />
-
+           <span className="font-semibold">Research User Id : </span>
+           <input
+              placeholder='Research Id'
+              className=' text-slate-400 font-semibold text-center border p-3 rounded-lg w-56 '
+              id='researchId'
+              required
+              readOnly
+              defaultValue={formData.researchId}
+            />
           <br/><br/>
+        </div>
 
-          </div>
-
-      
         <div className='flex flex-col gap-4 flex-1'>
-
           {/* Input field for Name */}
           <input
             type='text'
@@ -193,12 +192,11 @@ export default function Research() {
             className='border p-3 rounded-lg'
             id='name'
             maxLength={62}
-            minLength={6}
+
             required
             onChange={handleChange}
             value={formData.name}
           />
-
          
           {/* Input field for Address */}
           <input
@@ -207,7 +205,6 @@ export default function Research() {
             className='border p-3 rounded-lg'
             id='address'
             maxLength={62}
-            minLength={6}
             required
             onChange={handleChange}
             value={formData.address}
@@ -220,7 +217,7 @@ export default function Research() {
             className='border p-3 rounded-lg'
             id='title'
             maxLength={62}
-            minLength={6}
+            minLength={10}
             required
             onChange={handleChange}
             value={formData.title}
@@ -318,8 +315,7 @@ export default function Research() {
 
         {formSubmitted && (
           <div   className="mt-4 p-4 bg-green-100 border border-green-400 text-green-950 rounded">
-                    
-                      You have submitted your Research, and it's in the process. We will publish it soon. Thank you!
+            You have submitted your Research, and it's in the process. We will publish it soon. Thank you!
           </div>
         )}
       </form>
