@@ -10,7 +10,7 @@ export const CreateResearch = async (req,res,next) =>{
     } catch (error) {
         next(error)
     }
-}
+};
 
 
 export const ReadResearch = async (req, res, next) => {

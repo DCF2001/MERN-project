@@ -147,6 +147,12 @@ export default function Research() {
       setError('Please select at least one checkbox.');
       return;
     }
+    if (
+      !formData.category 
+    ) {
+      setError('Please select a Category');
+      return;
+    }
 
     try {
       setLoading(true);
@@ -160,7 +166,8 @@ export default function Research() {
       });
 
       if (!res.ok) {
-        throw new Error('Failed to create research');
+        const errorMessage = await res.text();
+        throw new Error(`Failed to create research: ${errorMessage}`);
       }
 
       setLoading(false);
