@@ -37,6 +37,11 @@ const researchSchema = new mongoose.Schema(
             required: true,
         },
 
+        category:{
+            type: String,
+            required: true,
+        },
+
         composting:{
             type: Boolean,
             required: true,

@@ -7,19 +7,15 @@ export default function Research() {
   const currentDate = new Date();
   const formattedDate = currentDate.toISOString().split('T')[0];
 
-
   const [formSubmitted, setFormSubmitted] = useState(false);
-  // State variables for handling errors and loading state
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // State variables for managing image files, previews, and error messages
   const [imageFiles, setImageFiles] = useState([]);
   const [imagePreviews, setImagePreviews] = useState([]);
   const [maxPhotosError, setMaxPhotosError] = useState(false);
   const [minPhotosError, setMinPhotosError] = useState(false);
 
-  // State variable for form data
   const [formData, setFormData] = useState({
     imgUrls: [],
     name: '',
@@ -28,6 +24,7 @@ export default function Research() {
     title: '',
     description: '',
     date: formattedDate,
+    category: '',
     composting: false,
     reducing: false,
     donating: false,
@@ -36,26 +33,45 @@ export default function Research() {
     other: false,
   });
 
-  // Event handler for form input changes
+  const categories = [
+    "Environmental Science",
+    "Waste Management",
+    "Public Health",
+    "Urban Planning",
+    "Engineering",
+    "Policy and Governance",
+    "Social Sciences",
+    "Economics",
+    "Technology and Innovation",
+    "Education and Outreach"
+  ];
+
   const handleChange = (e) => {
-    // Handle checkbox changes
-    if (e.target.id === 'composting' || e.target.id === 'reducing' || e.target.id === 'donating'
-      || e.target.id === 'energy' || e.target.id === 'reuse' || e.target.id === 'other') {
+    const { id, value, type, checked } = e.target;
+
+    // Handle select dropdown change
+    if (id === 'category') {
       setFormData({
         ...formData,
-        [e.target.id]: e.target.checked
+        category: value
+      });
+    }
+    // Handle checkbox changes
+    else if (type === 'checkbox') {
+      setFormData({
+        ...formData,
+        [id]: checked
       });
     }
     // Handle text input changes
-    if (e.target.type === 'text' || e.target.type === 'textarea' ) {
+    else if (type === 'text' || type === 'textarea') {
       setFormData({
         ...formData,
-        [e.target.id]: e.target.value
+        [id]: value
       });
     }
   };
 
-  // Event handler for file input changes
   const handleFileChange = (e) => {
     const selectedFiles = Array.from(e.target.files);
 
@@ -90,7 +106,6 @@ export default function Research() {
     });
   };
 
-  // Event handler for deleting selected image
   const handleDeleteImage = (index) => {
     const updatedImageFiles = [...imageFiles];
     updatedImageFiles.splice(index, 1);
@@ -109,7 +124,6 @@ export default function Research() {
     });
   };
 
-  // Event handler for form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -160,7 +174,6 @@ export default function Research() {
     }
   };
 
-  // Return JSX for rendering the component
   return (
     <main className='p-3 max-w-4xl mx-auto'>
       <br></br>
@@ -243,6 +256,18 @@ export default function Research() {
             required
             value={formData.date}
           />
+
+          <select 
+            id="category"
+            className="border p-3 rounded-lg"
+            onChange={handleChange}
+            value={formData.category}
+          >
+            <option value="" className="">Select the Garbage Management Research Categories </option>
+            {categories.map((category, index) => (
+              <option key={index} value={category}>{category}</option>
+            ))}
+          </select>
         </div>
 
         {/* Section for waste reduction practice checkboxes */}
@@ -314,7 +339,7 @@ export default function Research() {
         {error && <p className="text-red-700 text-sm">{error}</p>}
 
         {formSubmitted && (
-          <div   className="mt-4 p-4 bg-green-100 border border-green-400 text-green-950 rounded">
+          <div className="mt-4 p-4 bg-green-100 border border-green-400 text-green-950 rounded">
             You have submitted your Research, and it's in the process. We will publish it soon. Thank you!
           </div>
         )}
