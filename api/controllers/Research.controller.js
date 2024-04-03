@@ -13,3 +13,17 @@ export const CreateResearch = async (req,res,next) =>{
 }
 
 
+export const ReadResearch = async (req, res, next) => {
+    try {
+        // Find all research data
+        const researchData = await Research.find();
+
+        // Return the data as JSON response
+        return res.status(200).json(researchData);
+    } catch (error) {
+        next(error);
+    }
+};
+
+
+
