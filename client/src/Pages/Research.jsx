@@ -4,8 +4,6 @@ export default function Research() {
   const [researches, setResearches] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [currentResearchIndex, setCurrentResearchIndex] = useState(0);
-  const [currentPictureIndex, setCurrentPictureIndex] = useState(0);
 
   useEffect(() => {
     async function fetchResearches() {
@@ -15,7 +13,12 @@ export default function Research() {
           throw new Error('Failed to fetch researches');
         }
         const data = await response.json();
-        setResearches(data);
+        // Initialize current picture index for each research to 0
+        const initializedResearches = data.map(research => ({
+          ...research,
+          currentPictureIndex: 0
+        }));
+        setResearches(initializedResearches);
         setLoading(false);
       } catch (error) {
         setError(error.message);
@@ -26,12 +29,28 @@ export default function Research() {
     fetchResearches();
   }, []);
 
-  const prevPicture = () => {
-    setCurrentPictureIndex(currentPictureIndex === 0 ? researches[currentResearchIndex].imgUrls.length - 1 : currentPictureIndex - 1);
+  const prevPicture = (index) => {
+    setResearches(prevResearches =>
+      prevResearches.map((research, i) => {
+        if (i === index) {
+          const newIndex = research.currentPictureIndex === 0 ? research.imgUrls.length - 1 : research.currentPictureIndex - 1;
+          return { ...research, currentPictureIndex: newIndex };
+        }
+        return research;
+      })
+    );
   };
 
-  const nextPicture = () => {
-    setCurrentPictureIndex(currentPictureIndex === researches[currentResearchIndex].imgUrls.length - 1 ? 0 : currentPictureIndex + 1);
+  const nextPicture = (index) => {
+    setResearches(prevResearches =>
+      prevResearches.map((research, i) => {
+        if (i === index) {
+          const newIndex = research.currentPictureIndex === research.imgUrls.length - 1 ? 0 : research.currentPictureIndex + 1;
+          return { ...research, currentPictureIndex: newIndex };
+        }
+        return research;
+      })
+    );
   };
 
   if (loading) {
@@ -42,9 +61,6 @@ export default function Research() {
     return <div>Error: {error}</div>;
   }
 
-  const currentResearch = researches[currentResearchIndex];
-  const currentPicture = currentResearch.imgUrls[currentPictureIndex];
-
   return (
     <main className='p-3 max-w-4xl mx-auto'>
       <h1 className='text-3xl font-semibold text-center my-7 text-green-800'>Research Hub</h1>
@@ -54,11 +70,11 @@ export default function Research() {
 
       {researches.map((research, index) => (
         <div key={index} className="relative mb-8">
-          <button className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-200 rounded-full p-2" onClick={() => setCurrentPictureIndex(currentPictureIndex === 0 ? research.imgUrls.length - 1 : currentPictureIndex - 1)}>{'<'}</button>
-          <button className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-200 rounded-full p-2" onClick={() => setCurrentPictureIndex(currentPictureIndex === research.imgUrls.length - 1 ? 0 : currentPictureIndex + 1)}>{'>'}</button>
+          <button className="absolute top-1/2  transform -translate-y-1/2 bg-gray-200 rounded-full p-2 ml-8" onClick={() => prevPicture(index)}>{'<'}</button>
+          <button className="absolute top-1/2  transform -translate-y-1/2 bg-gray-200 rounded-full p-2 ml-72" onClick={() => nextPicture(index)}>{'>'}</button>
           <div className="border border-gray-300 p-4">
             <div className="flex items-center mb-2">
-              <img src={research.imgUrls[currentPictureIndex]} alt="Research picture" className="w-40 h-40 object-cover rounded mr-4" />
+              <img src={research.imgUrls[research.currentPictureIndex]} alt="Research picture" className="w-80 h-80 object-cover rounded mr-4" />
               <div>
                 <h2 className="text-xl font-semibold">{research.title}</h2>
                 <p className="text-gray-600 mb-2">Category: {research.category}</p>
