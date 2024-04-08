@@ -203,8 +203,8 @@ export default function Research() {
   return (
     <main className='p-3 max-w-4xl mx-auto'>
       <br></br>
-      <h1 className='text-3xl font-semibold text-center my-7 text-green-800'>Research Hub</h1>
-      <span className='text-lg text-green-700'>Welcome to the Research Hub: Where Ideas Flourish, Innovations Blossom, and Transformative Solutions Emerge for the Future of Garbage Management.</span>
+      <h1 className='text-3xl font-semibold text-center my-7 text-green-900'>Research Hub</h1>
+      <span className='text-lg text-green-900'>Welcome to the Research Hub: Where Ideas Flourish, Innovations Blossom, and Transformative Solutions Emerge for the Future of Garbage Management.</span>
 
       <br /><br />
       {/* Form for data input */}
@@ -297,7 +297,7 @@ export default function Research() {
 
         {/* Section for waste reduction practice checkboxes */}
         <br />
-        <span className='text-green-700 font-semibold'>
+        <span className='text-green-950 font-semibold'>
           Select the checkboxes for waste reduction practices you have implemented for this research:
         </span>
         <br />
