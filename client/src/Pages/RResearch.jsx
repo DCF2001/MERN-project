@@ -26,17 +26,16 @@ export default function ResearchDetails() {
 
   const handleRemoveResearch = async (researchId) => {
     try {
-      // Make a request to your backend to remove the research
-      const response = await fetch(`/api/research/remove?researchId=${researchId}`, {
-        method: 'GET',
+      const response = await fetch(`/api/research/remove/${researchId}`, {
+        method: 'DELETE',
       });
       if (!response.ok) {
         const errorMessage = await response.text();
         throw new Error(`Failed to remove research: ${errorMessage}`);
       }
-      // Show alert for successful deletion
+    
       alert('Research successfully deleted');
-      // Reload the page after successful removal
+     
       window.location.reload();
     } catch (error) {
       setError(error.message);

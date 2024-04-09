@@ -44,7 +44,7 @@ export const RReadResearch = async (req, res, next) => {
 
 export const RemoveResearch = async (req, res, next) => {
     try {
-      const { researchId } = req.query;
+      const { researchId } = req.params;
       const deletedResearch = await Research.findOneAndDelete({ researchId });
       if (!deletedResearch) {
         return res.status(404).json({ error: 'Research not found' });
@@ -54,3 +54,17 @@ export const RemoveResearch = async (req, res, next) => {
       return res.status(500).json({ error: error.message });
     }
   };
+
+  export const UpdateResearch = async (req, res) => {
+    const { researchId } = req.params; 
+    const newData = req.body;
+    try {
+        const updatedResearch = await Research.findOneAndUpdate({ researchId }, newData, { new: true });
+        if (!updatedResearch) {
+            return res.status(404).json({ message: "Research not found" });
+        }
+        return res.status(200).json({ message: "Research updated successfully", updatedResearch });
+    } catch (error) {
+        return res.status(500).json({error: error.message });
+    }
+};
