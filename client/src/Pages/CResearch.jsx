@@ -208,7 +208,7 @@ export default function Research() {
 
       <br /><br />
       {/* Form for data input */}
-      <form className='flex flex-col' onSubmit={handleSubmit}>
+      <form className=' flex-flexcol' onSubmit={handleSubmit}>
         {/* Input field for researchId */}
         <div className=''>
           <span className="font-semibold">Research User Id : </span>
@@ -300,7 +300,9 @@ export default function Research() {
         <span className='text-green-950 font-semibold'>
           Select the checkboxes for waste reduction practices you have implemented for this research:
         </span>
-        <br />
+        <br />        <br />
+       
+
         <div className='flex gap-6 flex-wrap'>
           <div className='flex gap-2'>
             <input type="checkbox" id='composting' className='w-5' onChange={handleChange} checked={formData.composting} />
@@ -327,7 +329,7 @@ export default function Research() {
             <span className='font-semibold'>Other</span>
           </div>
         </div>
-
+        <br />
         {/* Section for file upload */}
         <br />
         <div className='flex flex-col flex-1 '>

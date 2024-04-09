@@ -10,8 +10,9 @@ export default function Research() {
       try {
         const response = await fetch('/api/research/read');
         if (!response.ok) {
-          throw new Error('Failed to fetch researches');
-        }
+          const errorMessage = `Failed to fetch researches: ${response.status} ${response.statusText}`;
+          throw new Error(errorMessage);
+                }
         const data = await response.json();
         // Initialize current picture index for each research to 0
         const initializedResearches = data.map(research => ({
