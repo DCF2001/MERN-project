@@ -72,7 +72,7 @@ const Vehiclerequests = () => {
             </form>
           </div>
         </div>
-        <div className="col-md-4">
+        <div className="col-md-5">
           <div style={{ backgroundColor: '#f2f2f2', padding: '20px', borderRadius: '5px', height: '300px', overflowY: 'scroll' }}>
             <h3 className="text-center mb-4">Notifications</h3>
             <ul>

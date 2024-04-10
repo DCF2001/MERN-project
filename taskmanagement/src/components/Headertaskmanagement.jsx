@@ -35,7 +35,7 @@ const Header = () => {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>                        
             </button>
-            <a className="navbar-brand" href="#" style={{ color: '#FCDC2A' }}>Green Bin Garbage Management</a>
+            <a className="navbar-brand" href="/" style={{ color: '#FCDC2A' }}>Green Bin Garbage Management</a>
           </div>
           <div >
           <ul className="nav navbar-nav navbar-right">
@@ -56,7 +56,7 @@ const Header = () => {
     </a>
   </li>
   <li className="active">
-    <a href="/" style={{ color: '#FFFF', textDecoration: 'none', backgroundColor: 'transparent', transition: 'background-color 0.3s'}} 
+    <a href="Createtask" style={{ color: '#FFFF', textDecoration: 'none', backgroundColor: 'transparent', transition: 'background-color 0.3s'}} 
       onMouseEnter={(e) => e.target.style.backgroundColor = '#87A922'}
       onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
     >
