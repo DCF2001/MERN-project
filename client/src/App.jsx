@@ -6,6 +6,8 @@ import UResearch from './Pages/UResearch'
 import Research from './Pages/Research'
 import RHeader from './components/HeaderResearch'
 import RResearch from './Pages/RResearch'
+import PApproval from './Pages/PApproval'
+
 
 
 
@@ -26,6 +28,7 @@ export default function App() {
        </>
        
       )}
+
       />
       <Route path='/UResearch' element={(
         <>
@@ -46,6 +49,18 @@ export default function App() {
        )}
 
       />
+
+      
+<Route path='/PApproval' element={(
+        <>
+          <RHeader/>
+          <PApproval/>
+        </>
+        
+       )}
+
+      />
+      
       <Route path='/Research' element={<Research/>}/>
     
     </Routes>

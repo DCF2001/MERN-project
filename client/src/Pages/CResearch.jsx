@@ -30,6 +30,9 @@ export default function Research() {
     energy: false,
     reuse: false,
     other: false,
+    isProduct: false, 
+    price: '',
+    importance: '', 
   });
 
   const categories = [
@@ -171,6 +174,14 @@ export default function Research() {
     if (!formData.category) {
       setError('Please select a Category');
       return;
+    }
+
+    // If it's a product research, validate price and importance
+    if (formData.isProduct) {
+      if (!formData.price || !formData.importance) {
+        setError('Please fill in both price and importance for the product.');
+        return;
+      }
     }
 
     try {
@@ -329,7 +340,47 @@ export default function Research() {
             <span className='font-semibold'>Other</span>
           </div>
         </div>
-        <br />
+
+        <br/>
+        <div className="flex items-center mt-4">
+          <input
+            type="checkbox"
+            id="isProduct"
+            className="mr-2 w-5 flex h-5"
+            onChange={handleChange}
+            checked={formData.isProduct}
+          />
+          <label htmlFor="isProduct" className="font-semibold text-green-950 ">
+            IS THIS RESEARCH ABOUT A PRODUCT?
+          </label>
+        </div>
+
+     
+        {formData.isProduct && (
+          <div>
+            <input
+              type="text"
+              placeholder="Price"
+              className="border p-3 rounded-lg mt-5 w-full"
+              id="price"
+              required={formData.isProduct}
+              onChange={handleChange}
+              value={formData.price}
+            />
+
+            <br/>
+            <textarea
+              placeholder="Importance of the Product"
+              className="border p-8 rounded-lg mt-5 w-full"
+              id="importance"
+              maxLength={1000}
+              required={formData.isProduct}
+              onChange={handleChange}
+              value={formData.importance}
+            />
+          </div>
+        )}
+
         {/* Section for file upload */}
         <br />
         <div className='flex flex-col flex-1 '>
@@ -360,9 +411,7 @@ export default function Research() {
         </div>
 
         <br />
-        {/* Button for form submission */}
-        <button className='p-4 bg-green-900 rounded-lg uppercase text-white hover:opacity-85'>{loading ? 'Publishing' : 'Publish Research'}</button>
-        {/* Error message display */}
+        <button className='p-4 bg-green-900 rounded-lg uppercase text-white hover:opacity-85 w-full' >{loading ? 'Publishing' : 'Publish Research'}</button>
         {error && <p className="text-red-700 text-sm">{error}</p>}
 
         {formSubmitted && (

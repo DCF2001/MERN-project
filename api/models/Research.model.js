@@ -80,13 +80,26 @@ const researchSchema = new mongoose.Schema(
         },
 
         
-        approved: {
-            type: Boolean,
-            default: false, 
-          },
+    isProduct: {
+        type: Boolean,
+        required: true,
+        default: false 
+    },
+
+
+    price: {
+        type: Number, 
 
     },
+    importance: {
+        type: String,
+        
+    }
+
+},
     {timestamps:true}
+
+ 
 );
 
 const Research = mongoose.model('Research',researchSchema);

@@ -16,9 +16,12 @@ const UpdateResearch = () => {
   const [reuse, setReuse] = useState(false);
   const [other, setOther] = useState(false);
   const [imgUrls, setImgUrls] = useState([]);
-  const [approved, setApproved] = useState(false);
+  const [price, setPrice] = useState('');
+  const [isProduct, setIsProduct] = useState(false);
+  const [importance, setImportance] = useState('');
   const [error, setError] = useState('');
-  const [message, setMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+
 
   useEffect(() => {
     fetchResearches();
@@ -50,7 +53,10 @@ const UpdateResearch = () => {
       setEnergy(selectedResearch.energy);
       setReuse(selectedResearch.reuse);
       setOther(selectedResearch.other);
-      setImgUrls(selectedResearch.imgUrls);
+      setImgUrls(selectedResearch.imgUrls || []); 
+      setPrice(selectedResearch.price || '');
+      setIsProduct(selectedResearch.isProduct || false);
+      setImportance(selectedResearch.importance || ''); 
     }
   };
 
@@ -70,7 +76,10 @@ const UpdateResearch = () => {
         energy,
         reuse,
         other,
-        imgUrls
+        imgUrls,
+        price,
+        isProduct,
+        importance
       };
 
       const response = await fetch(`/api/research/update/${researchId}`, {
@@ -84,9 +93,9 @@ const UpdateResearch = () => {
       const data = await response.json();
 
       if (response.ok) {
-        setMessage(data.message);
+        setSuccessMessage(data.message);
         fetchResearches();
-        window.alert(data.message);
+        window.alert('Update Successful');
       } else {
         throw new Error(data.message);
       }
@@ -120,13 +129,11 @@ const UpdateResearch = () => {
         <textarea className="border border-gray-300 rounded px-4 py-2" rows="4" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
         <input className="border border-gray-300 rounded px-4 py-2" type="text" placeholder="Date" value={date} onChange={(e) => setDate(e.target.value)} />
 
-          <select id="category" className="border border-gray-300 rounded px-4 py-2"  value={category} onChange={(e) => setCategory(e.target.value)}>
-            
-            {['Environmental Science', 'Waste Management', 'Public Health', 'Urban Planning', 'Engineering', 'Policy and Governance', 'Social Sciences', 'Economics', 'Technology and Innovation', 'Education and Outreach'].map((cat) => (
-              <option key={cat} value={cat}>{cat}</option>
-            ))}
-          </select>
-
+        <select id="category" className="border border-gray-300 rounded px-4 py-2"  value={category} onChange={(e) => setCategory(e.target.value)}>
+          {['Environmental Science', 'Waste Management', 'Public Health', 'Urban Planning', 'Engineering', 'Policy and Governance', 'Social Sciences', 'Economics', 'Technology and Innovation', 'Education and Outreach'].map((cat) => (
+            <option key={cat} value={cat}>{cat}</option>
+          ))}
+        </select>
 
         <div className="flex items-center space-x-4">
           <label className="flex items-center">
@@ -154,7 +161,19 @@ const UpdateResearch = () => {
             <span className="ml-2">Other</span>
           </label>
         </div>
-        <input className="border border-gray-300 rounded px-4 py-2" type="text" placeholder="Image URLs" value={imgUrls} onChange={(e) => setImgUrls(e.target.value)} />
+        <div className="flex items-center space-x-4">
+          <label className="flex items-center">
+            <input type="checkbox" checked={isProduct} onChange={(e) => setIsProduct(e.target.checked)} />
+            
+            <span className="ml-2">IS Product</span>
+          </label>
+        </div>
+        {isProduct && (
+          <>
+            <input className="border border-gray-300 rounded px-4 py-2 w-full" type="number" placeholder="Price" value={price} onChange={(e) => setPrice(e.target.value)} />
+            <textarea className="border border-gray-300 rounded px-4 py-2 w-full" rows="4" placeholder="Importance" value={importance} onChange={(e) => setImportance(e.target.value)} />
+          </>
+        )}
       </form>
     </div>
   );
