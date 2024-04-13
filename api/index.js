@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import taskmanagementRouter from './routes/createtsaks routes.js';
 dotenv.config(); 
 
 mongoose.connect(process.env.MONGO).then(() => {
@@ -16,3 +17,5 @@ const PORT = 5003; // Change the port number to 5000 or any other available port
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT} !!!`);
 });
+
+app.use ("/api/createtask", taskmanagementRouter); 
