@@ -28,10 +28,21 @@ app.get('/', (req, res) => {
 
 
 //listen for requests
-app.listen(process.env.PORT,() => {
+app.listen(3000,() => {
     console.log('Server is running on port 3000');
 
 });
 
 app.use('/api/user', userRouter);
 app.use('/api/auth',authRouter);
+
+app.use((err, req, res, next) => {
+
+    const statusCode = err.statusCode || 500;
+    const message = err.message || 'internal server Error';
+    return res.status(statusCode).json({
+        success: false,
+        statusCode,
+        message,
+    });
+});
