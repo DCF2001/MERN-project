@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
+import TaskHeader from '../components/Headertaskmanagement';
 
 const SearchComponent = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -33,6 +34,8 @@ const SearchComponent = () => {
   };
 
   return (
+    <div>
+      <TaskHeader/>
     <div className="flex justify-center items-start min-h-screen">
       <div className="w-1/2 mt-8 relative">
         <span className="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -90,6 +93,7 @@ const SearchComponent = () => {
           </table>
         )}
       </div>
+    </div>
     </div>
   );
 };

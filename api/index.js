@@ -1,21 +1,25 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import taskmanagementRouter from './routes/createtsaks routes.js';
-dotenv.config(); 
+// import express from 'express';
+// import mongoose from 'mongoose';
+// import dotenv from 'dotenv';
+// import taskmanagementRouter from './routes/createtsaks routes.js';
+// import createtaskRouter from './routes/createtask.routes.js';
+// dotenv.config(); 
 
-mongoose.connect(process.env.MONGO).then(() => {
-    console.log('Connected to the MongoDB');
-}).catch((err) => {
-    console.log(err);
-});
+// mongoose.connect(process.env.MONGO).then(() => {
+//     console.log('Connected to the MongoDB');
+// }).catch((err) => {
+//     console.log(err);
+// });
 
-const app = express();
+// const app = express();
 
-const PORT = 5003; // Change the port number to 5000 or any other available port
+// app.use(express.json());
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT} !!!`);
-});
+// const PORT = 5003; // Change the port number to 5000 or any other available port
 
-app.use ("/api/createtask", taskmanagementRouter); 
+// app.listen(PORT, () => {
+//     console.log(`Server is running on port ${PORT} !!!`);
+// });
+
+// app.use ("/api/createtask", taskmanagementRouter); 
+// app.use ("/api/createtasks", createtaskRouter);
