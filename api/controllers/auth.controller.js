@@ -12,7 +12,7 @@ export const signup = async (req, res, next) => {
     } catch (error) {
       next(error);
     }
-  };
+};
  
   
 export const signin = async (req, res, next) => {
@@ -31,4 +31,42 @@ export const signin = async (req, res, next) => {
     } catch (error) {
       next(error);
     }
-  };
+};
+
+
+export const google = async (req, res, next) => {
+    try {
+      const staff = await Staff.findOne({ email: req.body.email });
+      if (staff) {
+        const token = jwt.sign({ id: staff._id }, process.env.JWT_SECRET);
+        const { password: pass, ...rest } = user._doc;
+        res
+          .cookie('access_token', token, { httpOnly: true })
+          .status(200)
+          .json(rest);
+      } else {
+        const generatedPassword =
+          Math.random().toString(36).slice(-8) +
+          Math.random().toString(36).slice(-8);
+        const hashedPassword = bcryptjs.hashSync(generatedPassword, 10);
+        const newStaff = new Staff({
+          username:
+            req.body.name.split(' ').join('').toLowerCase() +
+            Math.random().toString(36).slice(-4),
+          email: req.body.email,
+          password: hashedPassword,
+          avatar: req.body.photo,
+        });
+        await newStaff.save();
+        const token = jwt.sign({ id: newStaff._id }, process.env.JWT_SECRET);
+        const { password: pass, ...rest } = newStaff._doc;
+        res
+          .cookie('access_token', token, { httpOnly: true })
+          .status(200)
+          .json(rest);
+      }
+    } catch (error) {
+      next(error);
+    }
+};
+  
