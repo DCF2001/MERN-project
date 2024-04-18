@@ -14,7 +14,6 @@ export default function HeaderResearch() {
    <Link to='/CResearch'>   <li className='hidden sm:inline text-green-900 hover:underline'><b>Add Research</b></li></Link>
    <Link to='/UResearch'> <li className='hidden sm:inline text-green-900 hover:underline'><b>Update Research</b></li></Link>
    <Link to='/RResearch'> <li className='hidden sm:inline text-green-900 hover:underline'><b>Remove Research</b></li></Link>
-   <Link to='/PApproval'> <li className='hidden sm:inline text-green-900 hover:underline'><b>Product Approval</b></li></Link>
 
 
 

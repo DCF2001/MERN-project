@@ -265,7 +265,7 @@ export default function Research() {
             placeholder='Title'
             className='border p-3 rounded-lg'
             id='title'
-            maxLength={62}
+            maxLength={500}
             minLength={10}
             required
             onChange={handleChange}
@@ -277,7 +277,7 @@ export default function Research() {
             placeholder='Description'
             className='border p-8 rounded-lg'
             id='description'
-            maxLength={1000}
+            maxLength={3000}
             required
             onChange={handleChange}
             value={formData.description}

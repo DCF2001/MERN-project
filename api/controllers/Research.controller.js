@@ -68,3 +68,18 @@ export const RemoveResearch = async (req, res, next) => {
         return res.status(500).json({error: error.message });
     }
 };
+
+export const RetrieveProducts = async (req, res, next) => {
+    try {
+       
+        const products = await Research.find({ isProduct: true });
+
+       
+        return res.status(200).json(products);
+    } catch (error) {
+       
+        next(error);
+    }
+};
+
+

@@ -6,7 +6,8 @@ import UResearch from './Pages/UResearch'
 import Research from './Pages/Research'
 import RHeader from './components/HeaderResearch'
 import RResearch from './Pages/RResearch'
-import PApproval from './Pages/PApproval'
+import PProduct from './Pages/PProduct'
+import RproductsHeader from './components/RproductsHeader'
 
 
 
@@ -50,20 +51,27 @@ export default function App() {
 
       />
 
-      
-<Route path='/PApproval' element={(
+<Route path='/Research' element={(
         <>
-          <RHeader/>
-          <PApproval/>
+          <RproductsHeader/>
+          <Research/>
         </>
         
        )}
 
       />
-      
-      <Route path='/Research' element={<Research/>}/>
-    
+
+<Route path='/PProduct' element={(
+        <>
+          <RproductsHeader/>
+          <PProduct/>
+        </>
+        
+       )}
+
+      />    
     </Routes>
+
     </BrowserRouter>
   )
 }
