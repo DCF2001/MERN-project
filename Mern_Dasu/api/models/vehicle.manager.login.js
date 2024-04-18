@@ -20,6 +20,6 @@ const userSchema = new mongoose.Schema({
 
 },{timestamps: true});
 
-const vehicleManager = mongoose.model('vehicleManager', userSchema);
+const user = mongoose.model('user', userSchema);
 
-export default vehicleManager;
+export default user;
