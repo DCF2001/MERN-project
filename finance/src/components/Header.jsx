@@ -18,7 +18,7 @@ export default function Header() {
   </form>*/}
 
   <ul className='flex gap-8'> 
-  <Link to='/'>
+  <Link to='/home'>
     <li className='text-sm sm:text-xl hidden sm:inline text-slate-700 hover:underline' style={{ color: '#FFFFFF' }}>Home</li>
     </Link>
     <Link to='/payments'>
