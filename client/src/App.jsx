@@ -6,12 +6,12 @@ import SignUp from "./pages/SignUp";
 import Header from "./components/Header";
 import CreateListing from "./pages/CreateListing";
 import ViewListing from "./pages/ViewListing";
-
+import UpdateListing from "./pages/UpdateListing";
 
 export default function App() {
   return (
     <BrowserRouter>
-    <Header />
+    <Header />  
       <Routes>    
         <Route path="/" element={<Home />} />
         <Route path="/sign-in" element={<SignIn />} />
@@ -19,6 +19,8 @@ export default function App() {
        <Route path="/profile" element={<Profile />} />
        <Route path='/create-listing' element ={<CreateListing/>} />        
        <Route path='/view-listing' element ={<ViewListing/>} />
+       <Route path='/update-listing/:listingId' element ={<UpdateListing/>} />
+      
       </Routes>
     </BrowserRouter>
   );
