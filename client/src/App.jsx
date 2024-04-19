@@ -5,6 +5,7 @@ import Profile from "./pages/Profile";
 import SignUp from "./pages/SignUp";
 import Header from "./components/Header";
 import CreateListing from "./pages/CreateListing";
+import ViewListing from "./pages/ViewListing";
 
 
 export default function App() {
@@ -17,7 +18,7 @@ export default function App() {
         <Route path="/sign-up" element={<SignUp />} /> 
        <Route path="/profile" element={<Profile />} />
        <Route path='/create-listing' element ={<CreateListing/>} />        
-    
+       <Route path='/view-listing' element ={<ViewListing/>} />
       </Routes>
     </BrowserRouter>
   );
