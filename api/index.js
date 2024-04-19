@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import ReportgenerateRouter from '../api/routes/Reportgenerateroutes.js';
 dotenv.config();
 
 mongoose.connect(process.env.MONGO).then(() => {
@@ -11,7 +12,13 @@ mongoose.connect(process.env.MONGO).then(() => {
 
 const app = express();
 
+app.use(express.json());
+
 app.listen(3000, () =>{
     console.log('server is runningn on port 3000');
 }
 );
+
+app.use('/Reportgenerate',ReportgenerateRouter);
+
+export default app;
