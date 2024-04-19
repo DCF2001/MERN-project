@@ -15,7 +15,7 @@ export default function AllListings() {
     const fetchListings = async () => {
         try {
             setShowListingsError(false);
-            const res = await fetch(`/api/staff/listings`);
+            const res = await fetch('/api/staff/listings');
             const data = await res.json();
             if (data.success === false) {
               setShowListingsError(true);
