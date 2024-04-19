@@ -1,36 +1,4 @@
-/*import { Link } from 'react-router-dom';
-export default function Home() {
-  
-
-  return (
-    <div>
-      {/* top */
-       /* <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl
-         mx-auto'>
-          <h1 className='text-slate-700 font-bold text-3xl
-          lg:text-6xl'>
-            Find your next <span className='text-slate-500'>perfect</span>
-            <br/>
-            garbage collecting services with ease
-          </h1>
-
-          <div className='text-gray-400 text-xs sm:text-sm'>
-            Green Bin company is the best place to find your next perfect place to collect your garbage from the services.
-            <br/>
-            We have a wide range of services and recycling products for you to choose from. 
-
-          </div>
-          <Link to={"/search"} className='text-xs sm:text-sm text-blue-800 font-bold hover:underline'>
-            Let's get started...
-          </Link>
-        </div>
-
-      
-    </div>
-  )
-}*/
 import { Link } from 'react-router-dom';
-
 export default function Home() {
 
   return (
@@ -58,15 +26,18 @@ export default function Home() {
             
           </ul>
           Join us in our commitment to preserving the environment and creating a sustainable future for generations to come.
+          <div className='lg:w-1/3 flex flex-col gap-4 p-3 max-w-lg mx-auto'>
+        <img src='/garbageImage.jpg' alt='garbage' className='w-full h-auto' />
+      </div>
         </div>
-        <Link to={"/search"} className='text-xs sm:text-sm text-blue-800 font-bold hover:underline'>
+        <Link to={"/search"} className='text-xs sm:text-sm text-blue-800 font-bold hover:underline flex flex-col gap-4 p-3 max-w-lg mx-auto'>
           Let's get started...
         </Link>
       </div>
       
     </div>
     
-  )
+  );
 }
 
 
