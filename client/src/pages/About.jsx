@@ -6,6 +6,10 @@ export default function About() {
       <h1 className='text-3xl font-bold mb-4 text-green-800 '>About Green Bin Company</h1>
       <p className='mb-4 text-slate-700 '>Welcome to Green Bin Company, your trusted partner in sustainable waste management solutions. At Green Bin, we are passionate about preserving the environment and making a positive impact on the world around us. With years of experience and expertise in the field of garbage management, we are committed to providing innovative and efficient solutions to meet the evolving needs of our clients</p>
 
+      <div className='lg:w-1/7 flex flex-col gap-4 p-3 max-w-lg mx-auto '>
+        <img src='/garbageImage3.jpeg' alt='garbage3' className='w-full h-auto' />
+      </div>
+
       <h1 className='text-2xl font-bold mb-4 text-green-700 '>Our Mission</h1>
       <p className='mb-4 text-slate-700 '>Our mission is simple: to revolutionize the way waste is managed and to promote a cleaner, greener planet for future generations. We believe that every action counts, and by implementing responsible waste disposal practices, we can significantly reduce our carbon footprint and mitigate environmental damage</p>
 
@@ -17,6 +21,10 @@ export default function About() {
 
       <h1 className='text-2xl font-bold mb-4 text-green-700 '>Join Us</h1>
       <p className='mb-4 text-slate-700 '>Join us in our mission to create a cleaner, greener future. Whether you're a homeowner, business owner, or community leader, we invite you to partner with us in our journey towards sustainable waste management. Together, we can make a difference</p>
+
+      <div className='lg:w-1/7 flex flex-col gap-4 p-3 max-w-lg mx-auto'>
+        <img src='/garbageImage2.jpeg' alt='garbage2' className='w-full h-auto' />
+      </div>
       
     </div>
     
