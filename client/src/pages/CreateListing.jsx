@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 export default function CreateListing() {
+  
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const [files, setFiles] = useState([]);
@@ -17,7 +18,8 @@ export default function CreateListing() {
     imageUrls: [],
     name: '',
     description: '',
-    price: 50,
+    price:'',
+    quantity:''
   });
   const [imageUploadError, setImageUploadError] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -121,7 +123,7 @@ export default function CreateListing() {
       if (data.success === false) {
         setError(data.message);
       }
-      navigate(`/listing/${data._id}`);
+      navigate('/view-listing');
     } catch (error) {
       setError(error.message);
       setLoading(false); 
@@ -155,28 +157,32 @@ export default function CreateListing() {
             value={formData.description}
           />
           
-          <div className='flex flex-wrap gap-6'>
-            
-            <div className='flex items-center gap-2'>
+           
               <input
                 type='number'
+                placeholder='Price'
                 id='price'
-                min='50'
+                min='20'
                 max='10000000'
                 required
-                className='p-3 border border-gray-300 rounded-lg'
+                className='p-3 border border-gray-300 rounded-lg w-28'
                 onChange={handleChange}
                 value={formData.price}
               />
-              <div className='flex flex-col items-center'>
-                <p>Price</p>
-                {formData.type === 'rent' && (
-                  <span className='text-xs'>($ / month)</span>
-                )}
-              </div>
-            </div>
+              
+              <input
+                type='number'
+                placeholder='Quantity'
+                id='quantity'
+                min='1'
+                max='10000'
+                required
+                className='p-3 border border-gray-300 rounded-lg w-28'
+                onChange={handleChange}
+                value={formData.quantity}
+              />
          
-          </div>     </div> 
+             </div> 
           
           <div id='image' className='my-10'> 
           <p className='font-semibold'>

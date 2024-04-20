@@ -37,7 +37,7 @@ export default function SignIn() {
         return;
       }
       dispatch(signInSuccess(data));
-      navigate('/');
+      navigate('/view-listing');
     } catch (error) {
       dispatch(signInFailure(error.message));
     }

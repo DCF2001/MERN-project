@@ -10,6 +10,10 @@ const listingSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    quantity:{
+      type: Number,
+      required: true,
+    },
     price: {
       type: Number,
       required: true,
