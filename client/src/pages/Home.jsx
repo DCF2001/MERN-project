@@ -29,9 +29,15 @@ export default function Home() {
           <div className='lg:w-1/3 flex flex-col gap-4 p-3 max-w-lg mx-auto'>
         <img src='/garbageImage.jpg' alt='garbage' className='w-full h-auto' />
       </div>
+
+      <div className='p-6 bg-gray-100 text-center'>
+        <p className='text-lg text-slate-500'>
+          Embark on a journey into the future of waste management innovation with us. At Green Bin Company, we're not just collecting garbage we're pioneering the next generation of sustainable solutions. Our team of researchers is dedicated to pushing the boundaries of what's possible, exploring cutting-edge technologies and methodologies to revolutionize how we handle waste. Join us as we delve deep into the science of garbage management, uncovering new insights and developing innovative strategies to minimize environmental impact. From advanced recycling programs to revolutionary composting techniques, our research is paving the way towards a cleaner, greener planet. With each discovery, we're inching closer to a world where waste is no longer a problem, but a valuable resource waiting to be reclaimed. Together, let's shape a future where sustainability isn't just a goal it's a reality.
+        </p>
+      </div>
         </div>
         <Link to={"/search"} className='text-xs sm:text-sm text-blue-800 font-bold hover:underline flex flex-col gap-4 p-3 max-w-lg mx-auto'>
-          Let's get started...
+          Let's  see the Researches...
         </Link>
       </div>
       
