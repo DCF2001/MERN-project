@@ -8,6 +8,7 @@ import RHeader from './components/HeaderResearch'
 import RResearch from './Pages/RResearch'
 import PProduct from './Pages/PProduct'
 import RproductsHeader from './components/RproductsHeader'
+import Footer from './components/Footer'
 
 
 
@@ -19,7 +20,6 @@ export default function App() {
     <BrowserRouter>
 
     <Header/>
-
     <Routes>
 
       <Route path='/CResearch' element={(
@@ -55,6 +55,8 @@ export default function App() {
         <>
           <RproductsHeader/>
           <Research/>
+          <br/><br/>
+          <Footer/>
         </>
         
        )}
@@ -65,12 +67,16 @@ export default function App() {
         <>
           <RproductsHeader/>
           <PProduct/>
+          <br/><br/>
+          <Footer/>
         </>
         
        )}
 
       />    
     </Routes>
+   
+
 
     </BrowserRouter>
   )

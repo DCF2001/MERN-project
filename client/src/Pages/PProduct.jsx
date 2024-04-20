@@ -1,6 +1,5 @@
-// ResearchProductMarketplace.js
-
 import React, { useState, useEffect } from 'react';
+import { FaSearch } from 'react-icons/fa';
 
 export default function ResearchProductMarketplace() {
   const [researches, setResearches] = useState([]);
@@ -8,6 +7,9 @@ export default function ResearchProductMarketplace() {
   const [error, setError] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [showCart, setShowCart] = useState(false);
+  const [searchInput, setSearchInput] = useState('');
+  const [showReport, setShowReport] = useState(false);
+  const [purchaseDetails, setPurchaseDetails] = useState([]);
 
   useEffect(() => {
     async function fetchResearches() {
@@ -20,7 +22,8 @@ export default function ResearchProductMarketplace() {
         const data = await response.json();
         const initializedResearches = data.map(research => ({
           ...research,
-          currentPictureIndex: 0
+          currentPictureIndex: 0,
+          quantity: 1 // Initialize quantity to 1 for each product
         }));
         setResearches(initializedResearches);
         setLoading(false);
@@ -43,6 +46,36 @@ export default function ResearchProductMarketplace() {
     setCartItems(updatedCartItems);
   };
 
+  const handleSearchInputChange = (e) => {
+    setSearchInput(e.target.value);
+  };
+
+  const handleQuantityChange = (index, quantity) => {
+    const updatedResearches = [...researches];
+    updatedResearches[index].quantity = quantity;
+    setResearches(updatedResearches);
+  };
+
+  const handlePayNow = () => {
+    const details = cartItems.map(item => ({
+      name: item.title,
+      price: item.price,
+      quantity: item.quantity
+    }));
+    setPurchaseDetails(details);
+    setShowReport(true);
+  };
+
+  const handleConfirm = () => {
+    console.log('Purchase confirmed:', purchaseDetails);
+    setCartItems([]);
+    setShowReport(false);
+  };
+
+  const filteredResearches = researches.filter(research =>
+    research.title.toLowerCase().includes(searchInput.toLowerCase())
+  );
+
   if (loading) {
     return <div className="loading">Loading...</div>;
   }
@@ -56,8 +89,22 @@ export default function ResearchProductMarketplace() {
       <h1 className='text-3xl font-semibold text-center my-7 text-green-800'>Research Product Marketplace</h1>
       <span className='text-lg text-green-700 mb-10 block text-center'>Welcome to the Research Product Marketplace: Where innovative research findings are offered for sale to address challenges and advance various fields.</span>
 
+      <div className='bg-slate-200 w-80 p-3 rounded-lg items-center flex '>
+        <input 
+          type="text"
+          placeholder='Search...'
+          className='bg-transparent focus:outline-none w-24 sm:w-64'
+          value={searchInput}
+          onChange={handleSearchInputChange}
+        />
+        <FaSearch className='text-green-700 mt-'/>
+      </div>
+      <br/><br/>
+
+      {filteredResearches.length === 0 && <div className='font-semibold'>No results found.</div>}
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {researches.map((research, index) => (
+        {filteredResearches.map((research, index) => (
           <div
             key={index}
             className="relative border border-gray-300 rounded p-4"
@@ -67,15 +114,20 @@ export default function ResearchProductMarketplace() {
               <h3 className="text-lg font-semibold mb-2">{research.title}</h3>
               <p className="text-gray-600 mb-2">Price: ${research.price}</p>
               <p className="text-gray-600 mb-2">Importance: {research.importance}</p>
+              <input
+                type="number"
+                value={research.quantity}
+                onChange={(e) => handleQuantityChange(index, parseInt(e.target.value))}
+                className="w-16 h-8 text-center bg-gray-200 rounded-md mb-2"
+              />
               <div className="flex justify-between">
                 <button onClick={() => addToCart(research)} className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md mr-2">Add to Cart</button>
-                <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Buy Now</button>
               </div>
             </div>
           </div>
         ))}
       </div>
-      
+
       {showCart && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 z-50">
           <div className="bg-white rounded-lg p-8">
@@ -95,9 +147,25 @@ export default function ResearchProductMarketplace() {
                     </li>
                   ))}
                 </ul>
-                <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md mt-4">Pay Now</button>
+                <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md mt-4" onClick={handlePayNow}>Pay Now</button>
               </div>
             )}
+          </div>
+        </div>
+      )}
+
+      {showReport && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 z-50">
+          <div className="bg-white rounded-lg p-8">
+            <h2 className="text-2xl font-semibold mb-4">Purchase Details</h2>
+            {purchaseDetails.map((item, index) => (
+              <div key={index} className="mb-2">
+                <p><strong>Name:</strong> {item.name}</p>
+                <p><strong>Price:</strong> ${item.price}</p>
+                <p><strong>Quantity:</strong> {item.quantity}</p>
+              </div>
+            ))}
+            <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md mt-4" onClick={handleConfirm}>Confirm</button>
           </div>
         </div>
       )}
