@@ -26,8 +26,8 @@ export default function Home() {
             
           </ul>
           Join us in our commitment to preserving the environment and creating a sustainable future for generations to come.
-          <div className='lg:w-1/3 flex flex-col gap-4 p-3 max-w-lg mx-auto'>
-        <img src='/garbageImage.jpg' alt='garbage' className='w-full h-auto' />
+          <div className='lg:w-1/7 flex flex-col gap-4 p-3 max-w-lg mx-auto'>
+        <img src='/garbageImage4.jpeg' alt='garbage' className='w-full h-auto' />
       </div>
 
       <div className='p-6 bg-gray-100 text-center'>
