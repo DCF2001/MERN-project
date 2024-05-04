@@ -4,6 +4,13 @@ import dotenv from 'dotenv';
 import userRouter from './routes/user.route.js';
 import authRouter from './routes/auth.route.js';
 import cookieParser from 'cookie-parser';
+import reportRouter from './routes/report.route.js'; 
+import { getReports, createReport } from './routes/report.route.js';
+
+
+
+
+
 dotenv.config();
 
 mongoose.connect(process.env.MONGO).then(() => {
@@ -26,6 +33,7 @@ app.listen(3000, () =>{
 
 app.use('/api/user' , userRouter);
 app.use('/api/auth' ,authRouter);
+app.use('/api/report' , reportRouter); 
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
@@ -36,3 +44,4 @@ app.use((err, req, res, next) => {
         message,
     });
 });
+

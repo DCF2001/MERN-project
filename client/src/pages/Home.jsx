@@ -19,8 +19,8 @@ export default function Home() {
           <ul className="list-disc pl-6">
             
             <li className="mb-2"><Link to="/search" className="text-blue-600 hover:underline">Residential garbage collection</Link></li>
-            <li className="mb-2"><Link to="/search" className="text-purple-600 hover:underline">Recycling programs</Link></li>
-            <li className="mb-2"><Link to="/search" className="text-yellow-600 hover:underline">Organic waste composting</Link></li>
+            <li className="mb-2"><Link to="/search1" className="text-purple-600 hover:underline">Recycling programs</Link></li>
+            <li className="mb-2"><Link to="/search2" className="text-yellow-600 hover:underline">Organic waste composting</Link></li>
             
             
             

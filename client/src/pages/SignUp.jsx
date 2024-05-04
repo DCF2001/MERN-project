@@ -2,6 +2,9 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import OAuth from '../components/OAuth';
 
+// Import your background image
+import backgroundImage from '/backgroundImage7jpg.jpg';
+
 export default function SignUp() {
   const [formData, setFormData] = useState({});
   const  [error, setError] = useState(null);
@@ -47,6 +50,7 @@ export default function SignUp() {
   };
 
   return (
+    <div className="bg-image" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '100vh' }}>
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl text-center font-semibold my-7'>SignUp</h1>
 
@@ -69,6 +73,7 @@ export default function SignUp() {
         </Link>
       </div>
       {error && <p className='text-red-500 mt-5'>{error}</p>}
+    </div>
     </div>
   )
 }

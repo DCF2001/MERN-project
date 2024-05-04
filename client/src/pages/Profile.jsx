@@ -5,6 +5,9 @@ import { app } from '../firebase';
 import {updateUserStart, updateUserSuccess,updateUserFailure, deleteUserFailure, deleteUserStart, deleteUserSuccess, signOutUserStart } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
 
+// Import your background image
+import backgroundImage from '/backgroundImage7jpg.jpg';
+
 export default function Profile() {
   const fileRef = useRef(null);
   const {currentUser, loading, error} = useSelector((state) => state.user);
@@ -121,6 +124,7 @@ export default function Profile() {
 
 
   return (
+    <div className="bg-image" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '100vh' }}>
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4' >
@@ -171,6 +175,7 @@ export default function Profile() {
         {updateSuccess ?  'User is updated Successfully!' :  '' }
       </p>
 
+    </div>
     </div>
   );
 }
