@@ -35,7 +35,7 @@ const Header = () => {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>                        
             </button>
-            <a className="navbar-brand" href="/" style={{ color: '#FCDC2A' }}>Green Bin Garbage Management</a>
+            <a className="navbar-brand" href="/TaskManagement" style={{ color: '#FCDC2A' }}>Green Bin Garbage Management</a>
           </div>
           <div >
           <ul className="nav navbar-nav navbar-right">

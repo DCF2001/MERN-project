@@ -10,14 +10,10 @@ import {
 const createtaskroutes = express.Router();
 
 createtaskroutes.post("/add", createTask);
-createtaskroutes.get("/getall", updateTask);
-createtaskroutes.get("/getbyid/:id", deleteTask);
-createtaskroutes.put("/update",  getAllTask);
-createtaskroutes.delete("/delete/:id",  getTaskById);
+createtaskroutes.put("/update", updateTask);
+createtaskroutes.delete("/delete/:id", deleteTask);
+createtaskroutes.get("/getall",  getAllTask);
+createtaskroutes.get("/getbyid/:id",  getTaskById);
 
-// packagesRouter.get("/getAllAprovedPackages", getAllApprovedPackages);
-// packagesRouter.get("/allApprovedPackages",getAllApprovedPackages);
-// packagesRouter.put("/approvePackage", approvePackage);
-// packagesRouter.get("/getUnapprovedPackages", getUnapprovedPackages);
 
-export default createtaskroutes;
+export default createtaskroutes; 

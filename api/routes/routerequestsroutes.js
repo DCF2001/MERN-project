@@ -10,10 +10,10 @@ import {
 const routerequestsroutes = express.Router();
 
 routerequestsroutes.post("/add", createRouterequest);
-routerequestsroutes.get("/getall", updateRouterequest);
-routerequestsroutes.get("/getbyid/:id", deleteRouterequest);
-routerequestsroutes.put("/update",  getAllRouterequests);
-routerequestsroutes.delete("/delete/:id",  getRouterequestById);
+routerequestsroutes.put("/update/:id", updateRouterequest);
+routerequestsroutes.delete("/delete/:id", deleteRouterequest);
+routerequestsroutes.get("/getall", getAllRouterequests);
+routerequestsroutes.get("/getbyid/:id", getRouterequestById);
 
 
-export default routerequestsroutes;
+export default routerequestsroutes; 

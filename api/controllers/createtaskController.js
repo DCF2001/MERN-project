@@ -1,16 +1,13 @@
-import createtaskmodel from "../models/createtaskmodel.js";
+import CreateTask from "../models/createtaskmodel.js"; // Import your model
 
 //insert new packageAddon into database if user have  package in privileges
 export function createTask(req, res) {
-
-    const { Name, Property_Type, Service, Other_Services} = req.body;
-    const newtask = new createtaskmodel({
-        
+    const { Name, Property_Type, Service, Other_Services } = req.body;
+    const newtask = new CreateTask({
         Name: Name,
-	    Property_Type: Property_Type,
-	    Service:  Service,
-	    Other_Services: Other_Services,
-        
+        Property_Type: Property_Type,
+        Service: Service,
+        Other_Services: Other_Services,
     });
     newtask
         .save()
@@ -24,24 +21,19 @@ export function createTask(req, res) {
 
 //update existing packageAddon if user have  package in privileges by id
 export function updateTask(req, res) {
-
     const { id, Name, Property_Type, Service, Other_Services } = req.body;
     //update packageAddon by id
-    task
-        .updateOne(
-            { _id: id },
-            {
-                $set: {
-                    
-                    Name: Name,
-	                Property_Type: Property_Type,
-	                Service:  Service,
-	                Other_Services: Other_Services,
-        
-                    
-                },
-            }
-        )
+    CreateTask.updateOne(
+        { _id: id },
+        {
+            $set: {
+                Name: Name,
+                Property_Type: Property_Type,
+                Service: Service,
+                Other_Services: Other_Services,
+            },
+        }
+    )
         .then((result) => {
             res.send(result);
         })
@@ -53,8 +45,7 @@ export function updateTask(req, res) {
 //delete existing packageAddon if user have  package in privileges by id
 export function deleteTask(req, res) {
     //delete packageAddon by id
-    task
-        .deleteOne({ _id: req.params.id })
+    CreateTask.deleteOne({ _id: req.params.id })
         .then((result) => {
             res.send(result);
         })
@@ -65,10 +56,8 @@ export function deleteTask(req, res) {
 
 //get all packageAddons if user have  package in privileges
 export function getAllTask(req, res) {
-
     //get all packageAddons
-    task
-        .find()
+    CreateTask.find()
         .then((result) => {
             res.send(result);
         })
@@ -79,10 +68,8 @@ export function getAllTask(req, res) {
 
 //get packageAddon by id if user have  package in privileges
 export function getTaskById(req, res) {
-
     //get packageAddon by id
-    task
-        .findById(req.params.id)
+    CreateTask.findById(req.params.id)
         .then((result) => {
             res.send(result);
         })
@@ -90,16 +77,3 @@ export function getTaskById(req, res) {
             res.status(500).json({ message: "Error getting packageAddon" });
         });
 }
-
-// //get packageAddon by packageId
-// export function getPackageAddonByPackageId(req, res) {
-//     //get packageAddon by packageId
-//     PackageAddon
-//     .find({ packageId: req.params.id })
-//     .then((result) => {
-//         res.send(result);
-//     })
-//     .catch((err) => {
-//         res.status(500).json({ message: "Error getting packageAddon" });
-//     });
-// }
