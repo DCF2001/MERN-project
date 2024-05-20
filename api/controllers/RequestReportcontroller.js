@@ -1,36 +1,36 @@
-import Reportgeneratemodel from "../models/Reportgeneratemodel.js";
+import RequestReportmodel from "../models/RequestReportmodel.js";
 
 // Insert new route request into the database
-export function createReportgenerate(req, res) {
-    const { Date, Income_Amount , Amount_of_Expenditure, Special_Note } = req.body;
-    const newReportgeneratemodel = new Reportgeneratemodel({
+export function createRequestReport(req, res) {
+    const { Date, Decision , Amount, Note} = req.body;
+    const newRequestReportmodel = new RequestReportmodel({
         Date,
-        Income_Amount, 
-        Amount_of_Expenditure,
-        Special_Note,
+        Decision , 
+        Amount,
+        Note,
     });
-    newReportgeneratemodel
+    newRequestReportmodel
         .save()
         .then((result) => {
-            res.status(200).json(result);
+            res.send(result);
         })
         .catch((err) => {
             res.status(500).json({ message: "Error creating Route request" });
         });
-} 
+}
 
 // Update existing route request by ID
-export function updateReportgenerate(req, res) {
-    const { Date, Income_Amount,Amount_of_Expenditure, Special_Note } = req.body;
-   Reportgeneratemodel
+export function updateRequestReport(req, res) {
+    const { id, Date, Decision,Amount, Note } = req.body;
+    RequestReportmodel
         .updateOne(
-            { _id: req.params.id },
+            { _id: id },
             {
                 $set: {
                     Date,
-                    Income_Amount,
-                    Amount_of_Expenditure,
-                    Special_Note,
+                    Decision,
+                    Amount,
+                    Note,
                 },
             }
         )
@@ -43,8 +43,8 @@ export function updateReportgenerate(req, res) {
 }
 
 // Delete existing route request by ID
-export function deleteReportgenerate(req, res) {
-    Reportgeneratemodel
+export function deleteRequestReport(req, res) {
+    RequestReportmodel
         .deleteOne({ _id: req.params.id })
         .then((result) => {
             res.send(result);
@@ -55,8 +55,8 @@ export function deleteReportgenerate(req, res) {
 }
 
 // Get all route requests
-export function getAllReportgenerate(req, res) {
-    Reportgeneratemodel
+export function getAllRequestReport(req, res) {
+    RequestReportmodel
         .find()
         .then((result) => {
             res.send(result);
@@ -67,8 +67,8 @@ export function getAllReportgenerate(req, res) {
 }
 
 // Get route request by ID
-export function getReportgenerateById(req, res) {
-    Reportgeneratemodel
+export function getRequestReportById(req, res) {
+    RequestReportmodel
         .findById(req.params.id)
         .then((result) => {
             res.send(result);

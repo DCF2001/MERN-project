@@ -7,7 +7,7 @@ export default function Header() {
       <div className="flex justify-between items-center max-w-6xl mx-auto p-8">
         <Link to='/'>
         <h1 className='font-bold text-sm sm:text-2xl flex flex-wrap'>
-            <span className='text-slate-500' style={{ color: '#FCDC2A' }}>Green Bin Garbage Management</span>
+            <span className='text-slate-500' style={{ color: '#FCDC2A' }}>Green Bin</span>
         
         </h1>
         </Link>
@@ -18,7 +18,7 @@ export default function Header() {
   </form>*/}
 
   <ul className='flex gap-8'> 
-  <Link to='/home'>
+  <Link to='/'>
     <li className='text-sm sm:text-xl hidden sm:inline text-slate-700 hover:underline' style={{ color: '#FFFFFF' }}>Home</li>
     </Link>
     <Link to='/payments'>
@@ -27,9 +27,9 @@ export default function Header() {
     <Link to='/reports'>
     <li className='text-sm sm:text-xl hidden sm:inline text-slate-700 hover:underline' style={{ color: '#FFFFFF' }}>Reports</li>
     </Link>
-    <Link to='/requests'>
+    {/* <Link to='/requests'>
     <li className='text-sm sm:text-xl hidden sm:inline text-slate-700 hover:underline' style={{ color: '#FFFFFF' }}>Requests</li>
-    </Link>
+    </Link> */}
   </ul>
         </div>
     </header>

@@ -10,7 +10,7 @@ import {
 const Reportgenerateroutes = express.Router();
 
 Reportgenerateroutes.post("/add", createReportgenerate);
-Reportgenerateroutes.put("/update", updateReportgenerate);
+Reportgenerateroutes.put("/update/:id", updateReportgenerate);
 Reportgenerateroutes.delete("/delete/:id", deleteReportgenerate);
 Reportgenerateroutes.get("/getall", getAllReportgenerate);
 Reportgenerateroutes.get("/getbyid/:id", getReportgenerateById);

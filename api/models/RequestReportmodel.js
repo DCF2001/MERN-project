@@ -1,23 +1,23 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
-const ReportgeneratesSchema = new mongoose.Schema({
+const RequestReportSchema = new mongoose.Schema({
     Date : {
                  type : Date,
                  required : true
          },
         
-             Income_Amount :{
-                 type : Number,
+         Decision :{
+                 type : String,
                  required : true
              },
         
-             Amount_of_Expenditure : {
-                 type : Number,
+             Amount : {
+                 type : String,
                  required : true
              },
         
-             Special_Note : {
+             Note: {
                  type : String,
                  required : true
                 
@@ -28,6 +28,6 @@ const ReportgeneratesSchema = new mongoose.Schema({
 
 });
 
-export const reportgenerate = mongoose.model("Reportgenerate", ReportgeneratesSchema);
+export const requestreport = mongoose.model("Requestreport", RequestReportSchema);
 
-export default reportgenerate;
+export default requestreport;
